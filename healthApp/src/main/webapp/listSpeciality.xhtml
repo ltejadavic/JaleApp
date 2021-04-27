@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"> <ui:composition
+	template="master.xhtml">
+
+
+	<ui:define name="title">
+        .:Listado de Especialidades:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Especialidades </span>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+			<div class="row"> <div class="col-sm-4"> <div
+				class="form-group"> <p:commandButton value="Nuevo"
+				action="#{specialityController.nuevoEspecialidad()}"
+				styleClass="btn btn-primary" ajax="false" /> </div> </div> </div>
+
+
+
+			<div class="row"> <div class="col-sm-12"> <div
+				class="form-group table-responsive box-table-class"> <p:dataTable
+				id="lstSpeciality" var="spe"
+				value="#{specialityController.listaEspecialidades}" paginator="true"
+				paginatorPosition="top" rowsPerPageTemplate="10,20,30,40,50"
+				rows="10" styleClass="table table-bordered"
+				emptyMessage="No existen registros" rowIndexVar="item"
+				style="margin-bottom:0">
+
+				<p:column headerText="Id" sortBy="#{spe.idSpeciality}">
+					<h:outputText value="#{spe.idSpeciality}" />
+				</p:column>
+
+
+				<p:column headerText="Especialidad" sortBy="#{spe.nameSpeciality}">
+					<h:outputText value="#{spe.nameSpeciality}" />
+				</p:column>
+
+
+				<p:column headerText="Centro Médico"
+					sortBy="#{spe.medicCenter.nameMedicCenter}">
+					<h:outputText value="#{spe.medicCenter.nameMedicCenter}" />
+				</p:column>
+
+
+
+
+				<p:column headerText="Operación" exportable="false">
+					<h:commandLink action="lstSpeciality" value="Eliminar"
+						actionListener="#{specialityController.eliminar(spe)}" />
+				</p:column>
+			</p:dataTable> </div> </div> </div>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition> </html>
