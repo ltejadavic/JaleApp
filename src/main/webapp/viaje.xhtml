@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"> <ui:composition
+	template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Viaje:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Viajes</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+
+			<h:outputLabel for="idViaje" value="ID" styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="idViaje"
+				styleClass="form-control" value="#{viajeController.viaje.idViaje}"
+				maxlength="30" required="true" />
+			<br />
+			<p:selectOneMenu id="cboViaje"
+				value="#{viajeController.viaje.estado}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{viajeController.listaEstados}" var="m"
+					itemLabel="#{m.nameEstadoViaje}" itemValue="#{m}" />
+			</p:selectOneMenu>
+			<br />
+			<p:commandButton value="Grabar"
+				actionListener="#{viajeController.insert()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listViaje?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listViaje?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition> </html>

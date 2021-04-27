@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"> <ui:composition
+	template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Usuarios:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Usuarios</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="dniUser" value="Id " styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="dniUser"
+				styleClass="form-control" value="#{usuarioController.user.dniUser}"
+				required="true" />
+			<h:outputLabel for="nameUser" value="Nombres "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="nameUser"
+				styleClass="form-control" value="#{usuarioController.user.nameUser}"
+				maxlength="30" required="true" />
+			<br />
+			<h:outputLabel for="addressUser" value="Dirección "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="addressUser"
+				styleClass="form-control"
+				value="#{usuarioController.user.addressUser}" maxlength="30"
+				required="true" />
+			<br />
+			<h:outputLabel for="emailUser" value="Email"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="emailUser"
+				styleClass="form-control"
+				value="#{usuarioController.user.emailUser}" maxlength="30"
+				required="true" />
+			<br />
+			<h:outputLabel for="tiuUser" value="TIU" styleClass="control-label" />
+			<p:inputText autocomplete="off" id="tiuUser"
+				styleClass="form-control" value="#{usuarioController.user.tiuUser}"
+				maxlength="30" required="true" />
+			<br />
+
+			<p:commandButton value="Grabar"
+				actionListener="#{usuarioController.insert()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listUsuario?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listUsuario?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition> </html>
