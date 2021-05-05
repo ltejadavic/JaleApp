@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"> <ui:composition
+	template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Reservacion:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Reservaciones</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+
+			<h:outputLabel for="idReservacion" value="ID"
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="idReservacion"
+				styleClass="form-control"
+				value="#{reservacionController.reservacion.idReservacion}"
+				maxlength="30" required="true" />
+			<br />
+			<h:outputLabel for="dateMedicCenter" value="Fecha de Creación "
+				styleClass="control-label" />
+
+			<p:calendar id="dateReservacion" pattern="dd/MM/yyyy"
+				value="#{reservacionController.reservacion.dateReservacion}"
+				showOn="button" timeZone="UTC" required="true">
+			</p:calendar>
+			<br />
+
+			<p:selectOneMenu id="cboReservacionConductor"
+				value="#{reservacionController.reservacion.conductor}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{reservacionController.listaConductores}"
+					var="m" itemLabel="#{m.nameConductor}" itemValue="#{m}" />
+			</p:selectOneMenu>
+			<br />
+
+			<p:selectOneMenu id="cboReservacionRuta"
+				value="#{reservacionController.reservacion.ruta}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{reservacionController.listaRutas}" var="m"
+					itemLabel="#{m.idRuta}" itemValue="#{m}" />
+			</p:selectOneMenu>
+			<br />
+
+			<p:commandButton value="Grabar"
+				actionListener="#{reservacionController.insert()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listReservacion?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listReservacion?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition> </html>

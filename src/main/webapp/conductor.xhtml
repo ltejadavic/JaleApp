@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"> <ui:composition
+	template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Conductor:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Conductor</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+
+			<h:outputLabel for="dniConductor" value="Id"
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="dniConductor"
+				styleClass="form-control"
+				value="#{conductorController.conductor.dniConductor}"
+				required="true" />
+
+			<h:outputLabel for="nameConductor" value="Nombres "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="nameConductor"
+				styleClass="form-control"
+				value="#{conductorController.conductor.nameConductor}"
+				maxlength="30" required="true" />
+			<br />
+			<h:outputLabel for="addressConductor" value="Dirección "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="addressConductor"
+				styleClass="form-control"
+				value="#{conductorController.conductor.addressConductor}"
+				maxlength="30" required="true" />
+			<br />
+			<h:outputLabel for="emailConductor" value="Email"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="emailConductor"
+				styleClass="form-control"
+				value="#{conductorController.conductor.emailConductor}"
+				maxlength="30" required="true" />
+			<br />
+			<h:outputLabel for="tiuConductor" value="TIU"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="tiuConductor"
+				styleClass="form-control"
+				value="#{conductorController.conductor.tiuConductor}" maxlength="30"
+				required="true" />
+			<br />
+			<h:outputLabel for="descripcionConductor" value="Descripcion"
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="descripcionConductor"
+				styleClass="form-control"
+				value="#{conductorController.conductor.descripcionConductor}"
+				maxlength="30" required="true" />
+			<br />
+			<h:outputLabel for="cuentaConductor" value="Cuenta"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="cuentaConductor"
+				styleClass="form-control"
+				value="#{conductorController.conductor.cuentaConductor}"
+				maxlength="30" required="true" />
+			<br />
+			<h:outputLabel for="saldoConductor" value="Saldo"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="saldoConductor"
+				styleClass="form-control"
+				value="#{conductorController.conductor.saldoConductor}"
+				maxlength="30" required="true" />
+			<br />
+			<p:commandButton value="Grabar"
+				actionListener="#{conductorController.insert()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listConductor?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listConductor?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition> </html>

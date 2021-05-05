@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"> <ui:composition
+	template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Vehiculo:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Vehiculos</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+
+			<h:outputLabel for="idVehiculo" value="ID" styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="idVehiculo"
+				styleClass="form-control"
+				value="#{vehiculoController.vehiculo.idVehiculo}" maxlength="30"
+				required="true" />
+			<br />
+
+			<h:outputLabel for="marcaVehiculo" value="Marca"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="marcaVehiculo"
+				styleClass="form-control"
+				value="#{vehiculoController.vehiculo.marcaVehiculo}" maxlength="30"
+				required="true" />
+			<br />
+
+			<h:outputLabel for="modeloVehiculo" value="Modelo"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="modeloVehiculo"
+				styleClass="form-control"
+				value="#{vehiculoController.vehiculo.modeloVehiculo}" maxlength="30"
+				required="true" />
+			<br />
+			<h:outputLabel for="ageVehiculo" value="Año"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="ageVehiculo"
+				styleClass="form-control"
+				value="#{vehiculoController.vehiculo.ageVehiculo}" maxlength="30"
+				required="true" />
+			<br />
+
+			<h:outputLabel for="revisionVehiculo" value="Revisión Técnica"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="revisionVehiculo"
+				styleClass="form-control"
+				value="#{vehiculoController.vehiculo.revisionVehiculo}"
+				maxlength="30" required="true" />
+			<br />
+
+			<p:selectOneMenu id="cboVehiculo"
+				value="#{vehiculoController.vehiculo.conductor}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{vehiculoController.listaConductores}"
+					var="m" itemLabel="#{m.nameConductor}" itemValue="#{m}" />
+			</p:selectOneMenu>
+			<br />
+			<p:commandButton value="Grabar"
+				actionListener="#{vehiculoController.insert()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listVehiculo?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listVehiculo?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition> </html>

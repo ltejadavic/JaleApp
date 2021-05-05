@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"> <ui:composition
+	template="master.xhtml">
+
+
+	<ui:define name="title">
+        .:Lista de Pasajeros:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Pasajeros</span>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+			<div class="row"> <div class="col-sm-4"> <div
+				class="form-group"> <p:commandButton value="Nuevo"
+				action="#{pasajeroController.nuevoPasajero()}"
+				styleClass="btn btn-primary" ajax="false" /> </div> </div> </div>
+
+			<div class="row"> <div class="col-sm-12"> <div
+				class="form-group table-responsive box-table-class"> <p:dataTable
+				id="lstPas" var="pas" value="#{pasajeroController.listaPasajeros}"
+				paginator="true" paginatorPosition="top"
+				rowsPerPageTemplate="10,20,30,40,50" rows="10"
+				styleClass="table table-bordered"
+				emptyMessage="No existen registros" rowIndexVar="item"
+				style="margin-bottom:0">
+
+				<p:column headerText="DNI" sortBy="#{pas.dniPasajero}">
+					<h:outputText value="#{pas.dniPasajero}" />
+				</p:column>
+				<p:column headerText="Nombre" sortBy="#{pas.namePasajero}">
+					<h:outputText value="#{pas.namePasajero}" />
+				</p:column>
+				<p:column headerText="Dirección" sortBy="#{pas.addressPasajero}">
+					<h:outputText value="#{pas.addressPasajero}" />
+				</p:column>
+				<p:column headerText="Email" sortBy="#{pas.emailPasajero}">
+					<h:outputText value="#{pas.emailPasajero}" />
+				</p:column>
+				<p:column headerText="TIU" sortBy="#{pas.tiuPasajero}">
+					<h:outputText value="#{pas.tiuPasajero}" />
+				</p:column>
+				<p:column headerText="Cuenta" sortBy="#{pas.cuentaPasajero}">
+					<h:outputText value="#{pas.cuentaPasajero}" />
+				</p:column>
+				<p:column headerText="Saldo" sortBy="#{pas.saldoFavorPasajero}">
+					<h:outputText value="#{pas.saldoFavorPasajero}" />
+				</p:column>
+				<p:column headerText="Deuda" sortBy="#{pas.saldoAdeudadoPasajero}">
+					<h:outputText value="#{pas.saldoAdeudadoPasajero}" />
+				</p:column>
+				<p:column headerText="Operación" exportable="false">
+					<h:commandLink action="lstPasajero" value="Eliminar"
+						actionListener="#{pasajeroController.eliminar(pas)}" />
+				</p:column>
+			</p:dataTable> </div> </div> </div>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition> </html>
