@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"> <ui:composition
+	template="master.xhtml">
+
+
+	<ui:define name="title">
+        .:Lista de Rutas:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Rutas</span>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+			<div class="row"> <div class="col-sm-4"> <div
+				class="form-group"> <p:commandButton value="Nuevo"
+				action="#{rutaController.nuevoRuta()}" styleClass="btn btn-primary"
+				ajax="false" /> </div> </div> </div>
+
+			<div class="row"> <div class="col-sm-12"> <div
+				class="form-group table-responsive box-table-class"> <p:dataTable
+				id="lstRut" var="rut" value="#{rutaController.listaRutas}"
+				paginator="true" paginatorPosition="top"
+				rowsPerPageTemplate="10,20,30,40,50" rows="10"
+				styleClass="table table-bordered"
+				emptyMessage="No existen registros" rowIndexVar="item"
+				style="margin-bottom:0">
+				<p:column headerText="Id" sortBy="#{rut.idRuta}">
+					<h:outputText value="#{rut.idRuta}" />
+				</p:column>
+				<p:column headerText="Inicio" sortBy="#{rut.initRuta}">
+					<h:outputText value="#{rut.initRuta}" />
+				</p:column>
+				<p:column headerText="Fin" sortBy="#{rut.endRuta}">
+					<h:outputText value="#{rut.endRuta}" />
+				</p:column>
+				<p:column headerText="Distancia" sortBy="#{rut.distRuta}">
+					<h:outputText value="#{rut.distRuta}" />
+				</p:column>
+				<p:column headerText="Tiempo" sortBy="#{rut.timeRuta}">
+					<h:outputText value="#{rut.timeRuta}" />
+				</p:column>
+				<p:column headerText="Costo" sortBy="#{rut.costRuta}">
+					<h:outputText value="#{rut.costRuta}" />
+				</p:column>
+				<p:column headerText="Pasajero"
+					sortBy="#{rut.pasajero.namePasajero}">
+					<h:outputText value="#{rut.pasajero.namePasajero}" />
+				</p:column>
+				<p:column headerText="Operación" exportable="false">
+					<h:commandLink action="lstRuta" value="Eliminar"
+						actionListener="#{rutaController.eliminar(rut)}" />
+				</p:column>
+
+			</p:dataTable> </div> </div> </div>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition> </html>
