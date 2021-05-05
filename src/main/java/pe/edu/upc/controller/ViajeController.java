@@ -9,8 +9,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import pe.edu.upc.entity.EstadoViaje;
+import pe.edu.upc.entity.Reservacion;
 import pe.edu.upc.entity.Viaje;
 import pe.edu.upc.service.IEstadoViajeService;
+import pe.edu.upc.service.IReservacionService;
 import pe.edu.upc.service.IViajeService;
 
 @Named
@@ -22,21 +24,28 @@ public class ViajeController {
 	private IViajeService vService;
 	@Inject
 	private IEstadoViajeService esService;
+	@Inject
+	private IReservacionService rService;
 
 	// atributos
 	private Viaje viaje;
 	private EstadoViaje estado;
+	private Reservacion reservacion;
 	List<Viaje> listaViajes;
 	List<EstadoViaje> listaEstados;
+	List<Reservacion> listaReservaciones;
 
 	@PostConstruct
 	public void init() {
 		this.estado = new EstadoViaje();
 		this.viaje = new Viaje();
+		this.reservacion = new Reservacion();
 		this.listaViajes = new ArrayList<Viaje>();
 		this.listaEstados = new ArrayList<EstadoViaje>();
+		this.listaReservaciones = new ArrayList<Reservacion>();
 		this.listarEstadoViaje();
 		this.listarViaje();
+		this.listarReservacion();
 	}
 
 	// metodos
@@ -74,6 +83,15 @@ public class ViajeController {
 		}
 
 	}
+	
+	public void listarReservacion() {
+		try {
+			listaReservaciones = rService.list();
+		} catch (Exception e) {
+			System.out.println("Error al listar en el controller de viaje-reservaciones");
+		}
+
+	}
 
 	public void eliminar(Viaje viaje) {
 		try {
@@ -82,6 +100,20 @@ public class ViajeController {
 
 		} catch (Exception e) {
 			System.out.println("Error al eliminar en el controller de viaje");
+		}
+	}
+	
+	public String modifPre(Viaje via) {
+
+		this.setViaje(via);
+		return "viajeMod.xhtml";
+	}
+
+	public void modificar() {
+		try {
+			vService.update(this.viaje);
+		} catch (Exception e) {
+			System.out.println("Error al modificar en el controller de viaje");
 		}
 	}
 
@@ -115,6 +147,22 @@ public class ViajeController {
 
 	public void setListaEstados(List<EstadoViaje> listaEstados) {
 		this.listaEstados = listaEstados;
+	}
+
+	public Reservacion getReservacion() {
+		return reservacion;
+	}
+
+	public void setReservacion(Reservacion reservacion) {
+		this.reservacion = reservacion;
+	}
+
+	public List<Reservacion> getListaReservaciones() {
+		return listaReservaciones;
+	}
+
+	public void setListaReservaciones(List<Reservacion> listaReservaciones) {
+		this.listaReservaciones = listaReservaciones;
 	}
 
 }

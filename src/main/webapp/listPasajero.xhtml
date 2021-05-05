@@ -18,10 +18,39 @@
 	<ui:define name="content">
 
 		<h:form>
-			<div class="row"> <div class="col-sm-4"> <div
-				class="form-group"> <p:commandButton value="Nuevo"
-				action="#{pasajeroController.nuevoPasajero()}"
-				styleClass="btn btn-primary" ajax="false" /> </div> </div> </div>
+			<div class="row"> 
+			<div class="col-sm-4"> 
+			<div class="form-group"> 
+			<h:outputLabel for="name" value="Búsqueda"
+				styleClass="control-label" /> 
+				<p:inputText autocomplete="off"
+				id="name" styleClass="form-control"
+				value="#{pasajeroController.pasajero.namePasajero}" 
+				maxlength="120" />
+
+			</div> 
+			</div> 
+			<div class="col-sm-8 text-right"> <div class="form-group box-main-btn"> 
+			<span style="display: block; height: 30px;"> 
+			</span> <p:commandButton value="Limpiar" update="lstInfectious"
+				actionListener="#{pasajeroController.clean()}"
+				styleClass="btn btn-default" ajax="false" /> 
+				
+				<p:commandButton
+				value="Buscar" update="lstPas"
+				actionListener="#{pasajeroController.findbyName()}"
+				styleClass="btn btn-default btn-border" ajax="true" />
+		
+				</div> 
+				</div> 
+				</div>
+
+			<div class="row"> <div class="col-sm-4"> <div class="form-group"> 
+			<p:commandButton value="Nuevo" action="#{pasajeroController.nuevoPasajero()}"
+				styleClass="btn btn-primary" ajax="false" /> 
+				</div> 
+				</div> 
+				</div>
 
 			<div class="row"> <div class="col-sm-12"> <div
 				class="form-group table-responsive box-table-class"> <p:dataTable
@@ -31,6 +60,22 @@
 				styleClass="table table-bordered"
 				emptyMessage="No existen registros" rowIndexVar="item"
 				style="margin-bottom:0">
+
+				<p:column headerText="DNI" sortBy="#{pas.dniPasajero}">
+					<h:outputText value="#{pas.dniPasajero}" />
+				</p:column>
+				<p:column headerText="Nombre" sortBy="#{pas.namePasajero}">
+					<h:outputText value="#{pas.namePasajero}" />
+				</p:column>
+				<p:column headerText="Dirección" sortBy="#{pas.addressPasajero}">
+					<h:outputText value="#{pas.addressPasajero}" />
+				</p:column>
+				<p:column headerText="Email" sortBy="#{pas.emailPasajero}">
+					<h:outputText value="#{pas.emailPasajero}" />
+				</p:column>
+				<p:column headerText="TIU" sortBy="#{pas.tiuPasajero}">
+					<h:outputText value="#{pas.tiuPasajero}" />
+				</p:column>
 				<p:column headerText="Cuenta" sortBy="#{pas.cuentaPasajero}">
 					<h:outputText value="#{pas.cuentaPasajero}" />
 				</p:column>
@@ -40,15 +85,33 @@
 				<p:column headerText="Deuda" sortBy="#{pas.saldoAdeudadoPasajero}">
 					<h:outputText value="#{pas.saldoAdeudadoPasajero}" />
 				</p:column>
-				<p:column headerText="Usuario" sortBy="#{pas.usuario.nameUser}">
-					<h:outputText value="#{pas.usuario.nameUser}" />
-				</p:column>
 				<p:column headerText="Operación" exportable="false">
-					<h:commandLink action="lstPasajero" value="Eliminar"
+					<h:commandLink action="lstPowner" value="Eliminar"
 						actionListener="#{pasajeroController.eliminar(pas)}" />
 				</p:column>
+				
+			</p:dataTable>
+			<h:commandLink>
 
-			</p:dataTable> </div> </div> </div>
+				<p:outputLabel value="ExportarExcel"></p:outputLabel>
+
+				<p:dataExporter type="xls" target="lstPas" fileName="JalePasajeros" pageOnly="false">
+				</p:dataExporter>
+
+			</h:commandLink>
+			<br/>
+			
+			<h:commandLink>
+
+				<p:outputLabel value="ExportarPDF"></p:outputLabel>
+
+				<p:dataExporter type="pdf" target="lstPas" fileName="JalePasajeros" pageOnly="false">
+				</p:dataExporter>
+
+			</h:commandLink>  
+			
+			
+			</div> </div> </div>
 		</h:form>
 	</ui:define>
 

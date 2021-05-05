@@ -17,6 +17,42 @@
 	<ui:define name="content">
 		<h:form>
 
+			<h:outputLabel for="dniPasajero" value="Id"
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="dniPasajero"
+				styleClass="form-control"
+				value="#{pasajeroController.pasajero.dniPasajero}" required="true" />
+
+			<h:outputLabel for="namePasajero" value="Nombres "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="namePasajero"
+				styleClass="form-control"
+				value="#{pasajeroController.pasajero.namePasajero}" maxlength="30"
+				required="true" />
+			<br />
+			<h:outputLabel for="addressPasajero" value="Dirección "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="addressPasajero"
+				styleClass="form-control"
+				value="#{pasajeroController.pasajero.addressPasajero}"
+				maxlength="30" required="true" />
+			<br />
+			<h:outputLabel for="emailPasajero" value="Email"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="emailPasajero"
+				styleClass="form-control"
+				value="#{pasajeroController.pasajero.emailPasajero}" maxlength="30"
+				required="true" />
+			<br />
+			<h:outputLabel for="tiuPasajero" value="TIU"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="tiuPasajero"
+				styleClass="form-control"
+				value="#{pasajeroController.pasajero.tiuPasajero}" maxlength="30"
+				required="true" />
+			<br />
 			<h:outputLabel for="cuentaPasajero" value="Cuenta "
 				styleClass="control-label" />
 
@@ -38,13 +74,6 @@
 				styleClass="form-control"
 				value="#{pasajeroController.pasajero.saldoAdeudadoPasajero}"
 				maxlength="30" required="true" />
-			<br />
-			<p:selectOneMenu id="cboUsuario"
-				value="#{pasajeroController.pasajero.usuario}"
-				converter="omnifaces.SelectItemsConverter">
-				<f:selectItems value="#{pasajeroController.listaUsuarios}" var="m"
-					itemLabel="#{m.nameUser}" itemValue="#{m}" />
-			</p:selectOneMenu>
 			<br />
 			<p:commandButton value="Grabar"
 				actionListener="#{pasajeroController.insert()}"

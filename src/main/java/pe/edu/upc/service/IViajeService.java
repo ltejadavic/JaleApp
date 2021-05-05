@@ -11,5 +11,7 @@ public interface IViajeService {
 	public List<Viaje> list();
 
 	public void delete(int idViaje);
+	
+	public void update(Viaje viaje);
 
 }

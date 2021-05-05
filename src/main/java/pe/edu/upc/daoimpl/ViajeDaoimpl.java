@@ -59,4 +59,17 @@ public class ViajeDaoimpl implements IViajeDao{
 		
 	}
 
+	@Transactional
+	@Override
+	public void update(Viaje viaje) {
+		try {
+			em.merge(viaje);
+
+		} catch (Exception e) {
+			System.out.println("Error en el daoImpl deviaje update");
+			System.out.println(e.getMessage());
+		}
+
+	}
+		
 }

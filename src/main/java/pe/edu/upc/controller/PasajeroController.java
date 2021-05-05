@@ -9,9 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import pe.edu.upc.entity.Pasajero;
-import pe.edu.upc.entity.Usuario;
 import pe.edu.upc.service.IPasajeroService;
-import pe.edu.upc.service.IUsuarioService;
 
 @Named
 @RequestScoped
@@ -20,22 +18,16 @@ public class PasajeroController {
 	// Service
 	@Inject
 	private IPasajeroService pService;
-	@Inject
-	private IUsuarioService uService;
 
 	// atributos
 	private Pasajero pasajero;
-	private Usuario usuario;
 	List<Pasajero> listaPasajeros;
-	List<Usuario> listaUsuarios;
 
 	@PostConstruct
 	public void init() {
-		this.usuario = new Usuario();
+
 		this.pasajero = new Pasajero();
-		this.listaUsuarios = new ArrayList<Usuario>();
 		this.listaPasajeros = new ArrayList<Pasajero>();
-		this.listarUsuario();
 		this.listarPasajero();
 
 	}
@@ -57,16 +49,6 @@ public class PasajeroController {
 
 	}
 
-	public void listarUsuario() {
-
-		try {
-			listaUsuarios = uService.list();
-
-		} catch (Exception e) {
-			System.out.println("Error al listar en el controller de pasajero-user");
-		}
-	}
-
 	public void listarPasajero() {
 		try {
 			listaPasajeros = pService.list();
@@ -78,12 +60,31 @@ public class PasajeroController {
 
 	public void eliminar(Pasajero pasajero) {
 		try {
-			pService.delete(pasajero.getIdPasajero());
+			pService.delete(pasajero.getDniPasajero());
 			this.listarPasajero();
 
 		} catch (Exception e) {
 			System.out.println("Error al eliminar en el controller de pasajero");
 		}
+
+	}
+
+	public void findbyName() {
+		try {
+			if (pasajero.getNamePasajero().isEmpty()) {
+				this.listarPasajero();
+			} else {
+				listaPasajeros = this.pService.findByNamePasajeror(this.getPasajero());
+			}
+		} catch (Exception e) {
+			System.out.println("Error al buscar controller en Pasajero");
+		}
+
+	}
+
+	public void clean() {
+
+		this.init();
 
 	}
 
@@ -96,28 +97,12 @@ public class PasajeroController {
 		this.pasajero = pasajero;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
 	public List<Pasajero> getListaPasajeros() {
 		return listaPasajeros;
 	}
 
 	public void setListaPasajeros(List<Pasajero> listaPasajeros) {
 		this.listaPasajeros = listaPasajeros;
-	}
-
-	public List<Usuario> getListaUsuarios() {
-		return listaUsuarios;
-	}
-
-	public void setListaUsuarios(List<Usuario> listaUsuarios) {
-		this.listaUsuarios = listaUsuarios;
 	}
 
 }

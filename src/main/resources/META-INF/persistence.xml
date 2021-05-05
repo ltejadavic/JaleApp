@@ -6,10 +6,14 @@
 	<persistence-unit name="jaleApp2"
 		transaction-type="JTA">
 		<jta-data-source>java:/jaleDS</jta-data-source>
-		<class>pe.edu.upc.entity.Usuario</class>
-		<class>pe.edu.upc.entity.Pasajero</class>
 		<class>pe.edu.upc.entity.EstadoViaje</class>
 		<class>pe.edu.upc.entity.Viaje</class>
+		<class>pe.edu.upc.entity.Pasajero</class>
+		<class>pe.edu.upc.entity.Conductor</class>
+		<class>pe.edu.upc.entity.Vehiculo</class>
+		<class>pe.edu.upc.entity.Ruta</class>
+		<class>pe.edu.upc.entity.Reservacion</class>
+
 
 		<properties>
 

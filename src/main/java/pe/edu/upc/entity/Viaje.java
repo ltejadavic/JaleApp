@@ -19,6 +19,10 @@ public class Viaje {
 	@ManyToOne
 	@JoinColumn(name = "idEstadoViaje", nullable = false)
 	private EstadoViaje estado;
+	
+	@ManyToOne
+	@JoinColumn(name = "idReservacion", nullable = false)
+	private Reservacion reservacion;
 
 	// constructor with parameters
 	public Viaje() {
@@ -27,10 +31,11 @@ public class Viaje {
 	}
 
 	// Constructor without parameters
-	public Viaje(int idViaje, EstadoViaje estado) {
+	public Viaje(int idViaje, EstadoViaje estado, Reservacion reservacion) {
 		super();
 		this.idViaje = idViaje;
 		this.estado = estado;
+		this.reservacion = reservacion;
 	}
 
 	// get and set of attributes
@@ -49,6 +54,14 @@ public class Viaje {
 
 	public void setEstado(EstadoViaje estado) {
 		this.estado = estado;
+	}
+
+	public Reservacion getReservacion() {
+		return reservacion;
+	}
+
+	public void setReservacion(Reservacion reservacion) {
+		this.reservacion = reservacion;
 	}
 
 }

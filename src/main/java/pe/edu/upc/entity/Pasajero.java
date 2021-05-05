@@ -1,21 +1,27 @@
 package pe.edu.upc.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Pasajero")
 public class Pasajero {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idPasajero;
+	@Column(name = "dniPasajero", nullable = false, length = 8)
+	private String dniPasajero;
+	@Column(name = "namePasajero", nullable = false, length = 40)
+	private String namePasajero;
+
+	@Column(name = "addressPasajero", nullable = false, length = 100)
+	private String addressPasajero;
+
+	@Column(name = "emailPasajero", nullable = false, length = 40)
+	private String emailPasajero;
+
+	@Column(name = "tiuPasajero", nullable = false, length = 40)
+	private String tiuPasajero;
 
 	@Column(name = "cuentaPasajero", nullable = false)
 	private int cuentaPasajero;
@@ -26,32 +32,22 @@ public class Pasajero {
 	@Column(name = "saldoAdeudadoPasajero", nullable = false)
 	private int saldoAdeudadoPasajero;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "dniUser", nullable = false)
-	private Usuario usuario;
-
-
-	public Pasajero(int idPasajero, int cuentaPasajero, int saldoFavorPasajero, int saldoAdeudadoPasajero,
-			Usuario usuario) {
+	public Pasajero(String dniPasajero, String namePasajero, String addressPasajero, String emailPasajero,
+			String tiuPasajero, int cuentaPasajero, int saldoFavorPasajero, int saldoAdeudadoPasajero) {
 		super();
-		this.idPasajero = idPasajero;
+		this.dniPasajero = dniPasajero;
+		this.namePasajero = namePasajero;
+		this.addressPasajero = addressPasajero;
+		this.emailPasajero = emailPasajero;
+		this.tiuPasajero = tiuPasajero;
 		this.cuentaPasajero = cuentaPasajero;
 		this.saldoFavorPasajero = saldoFavorPasajero;
 		this.saldoAdeudadoPasajero = saldoAdeudadoPasajero;
-		this.usuario = usuario;
 	}
 
 	public Pasajero() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	public int getIdPasajero() {
-		return idPasajero;
-	}
-
-	public void setIdPasajero(int idPasajero) {
-		this.idPasajero = idPasajero;
 	}
 
 	public int getCuentaPasajero() {
@@ -78,14 +74,69 @@ public class Pasajero {
 		this.saldoAdeudadoPasajero = saldoAdeudadoPasajero;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public String getDniPasajero() {
+		return dniPasajero;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setDniPasajero(String dniPasajero) {
+		this.dniPasajero = dniPasajero;
 	}
-	
-	
+
+	public String getNamePasajero() {
+		return namePasajero;
+	}
+
+	public void setNamePasajero(String namePasajero) {
+		this.namePasajero = namePasajero;
+	}
+
+	public String getAddressPasajero() {
+		return addressPasajero;
+	}
+
+	public void setAddressPasajero(String addressPasajero) {
+		this.addressPasajero = addressPasajero;
+	}
+
+	public String getEmailPasajero() {
+		return emailPasajero;
+	}
+
+	public void setEmailPasajero(String emailPasajero) {
+		this.emailPasajero = emailPasajero;
+	}
+
+	public String getTiuPasajero() {
+		return tiuPasajero;
+	}
+
+	public void setTiuPasajero(String tiuPasajero) {
+		this.tiuPasajero = tiuPasajero;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dniPasajero == null) ? 0 : dniPasajero.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pasajero other = (Pasajero) obj;
+		if (dniPasajero == null) {
+			if (other.dniPasajero != null)
+				return false;
+		} else if (!dniPasajero.equals(other.dniPasajero))
+			return false;
+		return true;
+	}
 
 }

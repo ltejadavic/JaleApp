@@ -30,9 +30,15 @@ public class PasajeroServiceimpl implements IPasajeroService {
 	}
 
 	@Override
-	public void delete(int idPasajero) {
-		pDao.delete(idPasajero);
+	public void delete(String dniPasajero) {
+		pDao.delete(dniPasajero);
 
+	}
+
+	@Override
+	public List<Pasajero> findByNamePasajeror(Pasajero pa) {
+
+		return pDao.findByNamePasajeror(pa);
 	}
 
 }

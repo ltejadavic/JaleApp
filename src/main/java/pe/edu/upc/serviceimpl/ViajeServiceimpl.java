@@ -34,4 +34,10 @@ public class ViajeServiceimpl implements IViajeService {
 
 	}
 
+	@Override
+	public void update(Viaje viaje) {
+		vDao.update(viaje);
+		
+	}
+
 }

@@ -30,6 +30,13 @@
 					itemLabel="#{m.nameEstadoViaje}" itemValue="#{m}" />
 			</p:selectOneMenu>
 			<br />
+				<p:selectOneMenu id="cboReservacion"
+				value="#{viajeController.viaje.reservacion}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{viajeController.listaReservaciones}" var="m"
+					itemLabel="#{m.idReservacion}" itemValue="#{m}" />
+			</p:selectOneMenu>
+			<br />
 			<p:commandButton value="Grabar"
 				actionListener="#{viajeController.insert()}"
 				styleClass="btn btn-primary " update="@form"

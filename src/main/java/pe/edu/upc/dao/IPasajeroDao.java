@@ -10,5 +10,7 @@ public interface IPasajeroDao {
 
 	public List<Pasajero> list();
 
-	public void delete(int idPasajero);
+	public void delete(String dniPasajero);
+
+	public List<Pasajero> findByNamePasajeror(Pasajero pa);
 }
